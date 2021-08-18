@@ -13,7 +13,7 @@
     <link rel="manifest" href="site.webmanifest">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="../../styles/style.css">
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m, e, t, r, i, k, a) {
@@ -32,38 +32,26 @@
             webvisor: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/72325039" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/72325039" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
     <!-- /Yandex.Metrika counter -->
 </head>
 
 <body>
     <a href="index.html" class="header_div">
-        <img class="img_logo" src="img/python-logo.svg" alt="Учебник Python">
+        <img class="img_logo" src="../../img/python-logo.svg" alt="Учебник Python">
         <h1>Учебник Python</h1>
     </a>
     <div class="main_div">
-        <div class="nav_div">
-            <p class="nav_element">
-                <a href="output.html" class="nav_link">Вывод данных</a></p>
-            <p class="nav_element">
-                <a href="input.html" class="nav_link">Ввод данных</a></p>
-            <p class="nav_element">
-                <a href="variables.html" class="nav_link">Переменные</a></p>
-            <p class="nav_element">
-                <a href="types.html" class="nav_link">Типы данных</a></p>
-            <p class="nav_element">
-                <a href="operator.html" class="nav_link">Условный оператор</a></p>
-            <p class="nav_element">
-                <a href="cicles.html" class="nav_link">Циклы</a></p>
-            <p class="nav_element">
-                <a href="functions.html" class="nav_link">Функции</a></p>
-            <p class="nav_element">
-                <a href="modules.html" class="nav_link">Модули</a></p>
-        </div>
+        <?php
+        require_once "../../menu.php";
+        ?>
         <div class="content_div">
             <h2>Вывод данных</h2>
             <p>Для <b>вывода данных</b> в <b>Python</b> используется функция <b>print()</b>. В качестве аргумента в функции могут выступать <b>строки</b>, <b>числа</b> и другая информация различных
-                <a href="types.html"><u><b>типов данных</b></u></a>.</p>
+                <a href="types.html"><u><b>типов данных</b></u></a>.
+            </p>
             <h3>Hello, world!</h3>
             <p>Напишем всеми известную первую программу начинающего программиста – <b>Hello, world!</b> Код:</p>
             <div class=" code ">
@@ -79,7 +67,7 @@
                 интерпретатор выведет 4.
             </p>
             <h3>print(name)?</h3>
-            <p>Через <b>print()</b> также можно <b>выводить</b> значения <u><b><a href = "variables.html ">переменных</a></b></u>. Выведем значение переменной name. Как это выглядит:
+            <p>Через <b>print()</b> также можно <b>выводить</b> значения <u><b><a href="variables.html ">переменных</a></b></u>. Выведем значение переменной name. Как это выглядит:
             </p>
             <div class="code ">
                 name = "Andrew"<br>print(name)

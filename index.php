@@ -32,7 +32,9 @@
             webvisor: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/72325039" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/72325039" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
     <!-- /Yandex.Metrika counter -->
 </head>
 
@@ -42,24 +44,9 @@
         <h1>Учебник Python</h1>
     </a>
     <div class="main_div">
-        <div class="nav_div">
-            <p class="nav_element">
-                <a href="output.html" class="nav_link">Вывод данных</a></p>
-            <p class="nav_element">
-                <a href="input.html" class="nav_link">Ввод данных</a></p>
-            <p class="nav_element">
-                <a href="variables.html" class="nav_link">Переменные</a></p>
-            <p class="nav_element">
-                <a href="types.html" class="nav_link">Типы данных</a></p>
-            <p class="nav_element">
-                <a href="operator.html" class="nav_link">Условный оператор</a></p>
-            <p class="nav_element">
-                <a href="cicles.html" class="nav_link">Циклы</a></p>
-            <p class="nav_element">
-                <a href="functions.html" class="nav_link">Функции</a></p>
-            <p class="nav_element">
-                <a href="modules.html" class="nav_link">Модули</a></p>
-        </div>
+        <?php
+        require_once "menu.php";
+        ?>
         <div class="content_div">
             <p>Добро пожаловать на сайт&nbsp;<u><b><a href="index.html">Учебник Python</a></b>!</u></p>
             <p>В меню навигации ты можешь выбрать интересующую тебя тему, где ты найдешь теорию, советы и примеры написания программ на языке программирования Python.</p>

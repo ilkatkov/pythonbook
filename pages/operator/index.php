@@ -13,7 +13,7 @@
     <link rel="manifest" href="site.webmanifest">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="../../styles/style.css">
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m, e, t, r, i, k, a) {
@@ -32,34 +32,21 @@
             webvisor: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/72325039" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/72325039" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
     <!-- /Yandex.Metrika counter -->
 </head>
 
 <body>
     <a href="index.html" class="header_div">
-        <img class="img_logo" src="img/python-logo.svg" alt="Учебник Python">
+        <img class="img_logo" src="../../img/python-logo.svg" alt="Учебник Python">
         <h1>Учебник Python</h1>
     </a>
     <div class="main_div">
-        <div class="nav_div">
-            <p class="nav_element">
-                <a href="output.html" class="nav_link">Вывод данных</a></p>
-            <p class="nav_element">
-                <a href="input.html" class="nav_link">Ввод данных</a></p>
-            <p class="nav_element">
-                <a href="variables.html" class="nav_link">Переменные</a></p>
-            <p class="nav_element">
-                <a href="types.html" class="nav_link">Типы данных</a></p>
-            <p class="nav_element">
-                <a href="operator.html" class="nav_link">Условный оператор</a></p>
-            <p class="nav_element">
-                <a href="cicles.html" class="nav_link">Циклы</a></p>
-            <p class="nav_element">
-                <a href="functions.html" class="nav_link">Функции</a></p>
-            <p class="nav_element">
-                <a href="modules.html" class="nav_link">Модули</a></p>
-        </div>
+        <?php
+        require_once "../../menu.php";
+        ?>
         <div class="content_div">
             <h2>Условный оператор</h2>
             <p>Знакомимся с <b>условным оператором</b>.</p>
@@ -78,8 +65,9 @@
             <p>Если же нам нужно перебрать множество вариантов событий, то мы можем использовать <b>elif</b> (сокращение от <b>else if</b>).</p>
             <p>Операторы сравнения:</p>
             <p><i>== - равно<br>!= - не равно<br>
-                < - меньше<br>> - больше<br>
-                    <= - меньше или равно<br>>= - больше или равно</i></p>
+                    < - меньше<br>> - больше<br>
+                        <= - меньше или равно<br>>= - больше или равно
+                </i></p>
             <p>Рассмотрим пример, в котором пользователь вводит 2 числа и выясняет, какое из них больше. Если числа равны, то программа должна будет оповестить нас об этом.</p>
             <div class="code">
                 a = int(input("Введи первое число:"))<br>b = int(input("Введи второе число:"))<br><br>if a == b:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Числа равны.")<br>elif a > b:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(a, "больше" b)<br>else:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(b,

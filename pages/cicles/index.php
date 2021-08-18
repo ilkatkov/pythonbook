@@ -13,7 +13,7 @@
     <link rel="manifest" href="site.webmanifest">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="../../styles/style.css">
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m, e, t, r, i, k, a) {
@@ -32,34 +32,21 @@
             webvisor: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/72325039" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/72325039" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
     <!-- /Yandex.Metrika counter -->
 </head>
 
 <body>
     <a href="index.html" class="header_div">
-        <img class="img_logo" src="img/python-logo.svg" alt="Учебник Python">
+        <img class="img_logo" src="../../img/python-logo.svg" alt="Учебник Python">
         <h1>Учебник Python</h1>
     </a>
     <div class="main_div">
-        <div class="nav_div">
-            <p class="nav_element">
-                <a href="output.html" class="nav_link">Вывод данных</a></p>
-            <p class="nav_element">
-                <a href="input.html" class="nav_link">Ввод данных</a></p>
-            <p class="nav_element">
-                <a href="variables.html" class="nav_link">Переменные</a></p>
-            <p class="nav_element">
-                <a href="types.html" class="nav_link">Типы данных</a></p>
-            <p class="nav_element">
-                <a href="operator.html" class="nav_link">Условный оператор</a></p>
-            <p class="nav_element">
-                <a href="cicles.html" class="nav_link">Циклы</a></p>
-            <p class="nav_element">
-                <a href="functions.html" class="nav_link">Функции</a></p>
-            <p class="nav_element">
-                <a href="modules.html" class="nav_link">Модули</a></p>
-        </div>
+        <?php
+        require_once "../../menu.php";
+        ?>
         <div class="content_div">
             <h2>Циклы</h2>
             <p><b>Циклы</b> - тоже неотъемлемая часть наших программ!</p>
@@ -68,7 +55,8 @@
             <h3>Пароль неверный!</h3>
             <p>Реализуем такой алгоритм, при котором пользователь не может пройти дальше, <b>пока</b> не введет верный пароль. Количество попыток неограниченно.</p>
             <p>Для этого нам понадобится цикл <b>while</b> (пока, до тех пор как). Логика программы такова: пока
-                <a href="input.html"><u><b>вводится</b></u></a> неверный пароль, просить его <a href="input.html"><u><b>ввести</b></u></a> заново, иначе <a href="output.html"><u><b>вывести</b></u></a> строку "Добро пожаловать!".</p>
+                <a href="input.html"><u><b>вводится</b></u></a> неверный пароль, просить его <a href="input.html"><u><b>ввести</b></u></a> заново, иначе <a href="output.html"><u><b>вывести</b></u></a> строку "Добро пожаловать!".
+            </p>
             <p>Изучим конструкцию <b>цикла while:</b></p>
             <div class="code">
                 while

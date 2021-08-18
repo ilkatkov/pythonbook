@@ -13,7 +13,7 @@
     <link rel="manifest" href="site.webmanifest">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="../../styles/style.css">
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m, e, t, r, i, k, a) {
@@ -32,38 +32,26 @@
             webvisor: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/72325039" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/72325039" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
     <!-- /Yandex.Metrika counter -->
 </head>
 
 <body>
     <a href="index.html" class="header_div">
-        <img class="img_logo" src="img/python-logo.svg" alt="Учебник Python">
+        <img class="img_logo" src="../../img/python-logo.svg" alt="Учебник Python">
         <h1>Учебник Python</h1>
     </a>
     <div class="main_div">
-        <div class="nav_div">
-            <p class="nav_element">
-                <a href="output.html" class="nav_link">Вывод данных</a></p>
-            <p class="nav_element">
-                <a href="input.html" class="nav_link">Ввод данных</a></p>
-            <p class="nav_element">
-                <a href="variables.html" class="nav_link">Переменные</a></p>
-            <p class="nav_element">
-                <a href="types.html" class="nav_link">Типы данных</a></p>
-            <p class="nav_element">
-                <a href="operator.html" class="nav_link">Условный оператор</a></p>
-            <p class="nav_element">
-                <a href="cicles.html" class="nav_link">Циклы</a></p>
-            <p class="nav_element">
-                <a href="functions.html" class="nav_link">Функции</a></p>
-            <p class="nav_element">
-                <a href="modules.html" class="nav_link">Модули</a></p>
-        </div>
+        <?php
+        require_once "../../menu.php";
+        ?>
         <div class="content_div">
             <h2>Ввод данных</h2>
             <p>Запрос данных от пользователя выполняет функция <b>input()</b>. Ее аргументом может быть <b>строка</b>, например вопрос, на который пользователь должен дать ответ. Данные, которые примет <b>input()</b> с клавиатуры, необходимо поместить в
-                <a href="variables.html"><u><b>переменную</b></u></a>. Запросим у пользователя ответ на вопрос и выведем его:</p>
+                <a href="variables.html"><u><b>переменную</b></u></a>. Запросим у пользователя ответ на вопрос и выведем его:
+            </p>
             <div class="code">
                 answer = input("Как дела?")<br>print(answer)
             </div>
@@ -80,7 +68,8 @@
             <p>Программа выполняет свою задачу. Но хочется сделать вывод в формате «25 * 10 = 250».</p>
             <p>Вспоминаем про
                 <a href="output.html"><u><b>конкатенацию</b></u></a>, про которую говорили на
-                <a href="output.html"><u><b>прошлом уроке</b></u></a>. Увы, но число и строку нельзя между собой сложить. Придется наши числа превращать в строки. На помощь приходит функция <b>str()</b>.</p>
+                <a href="output.html"><u><b>прошлом уроке</b></u></a>. Увы, но число и строку нельзя между собой сложить. Придется наши числа превращать в строки. На помощь приходит функция <b>str()</b>.
+            </p>
             <div class="code">
                 num = input("Введи число:")<br>num = int(num)<br>result = num*10<br>print(str(num) + " * 10 = " + str(result))
             </div>
