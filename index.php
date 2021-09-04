@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <a href="index.html" class="header_div">
+    <a href="index.php" class="header_div">
         <img class="img_logo" src="img/python-logo.svg" alt="Учебник Python">
         <h1>Учебник Python</h1>
     </a>
@@ -48,7 +48,7 @@
         require_once "menu.php";
         ?>
         <div class="content_div">
-            <p>Добро пожаловать на сайт&nbsp;<u><b><a href="index.html">Учебник Python</a></b>!</u></p>
+            <p>Добро пожаловать на сайт&nbsp;<u><b><a href=".">Учебник Python</a></b>!</u></p>
             <p>В меню навигации ты можешь выбрать интересующую тебя тему, где ты найдешь теорию, советы и примеры написания программ на языке программирования Python.</p>
         </div>
     </div>

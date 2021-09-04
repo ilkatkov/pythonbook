@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <a href="index.html" class="header_div">
+    <a href="/" class="header_div">
         <img class="img_logo" src="../../img/python-logo.svg" alt="Учебник Python">
         <h1>Учебник Python</h1>
     </a>
