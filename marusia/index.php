@@ -9,6 +9,7 @@ $version = $data['version'];
 
 
 // кнопки
+
 $lessons_buttons = array(array('title' => "Вывод данных"), array('title' => 'Ввод данных'), array('title' => 'Переменные'), array('title' => 'Типы данных'), array('title' => 'Условный оператор'), array('title' => 'Циклы'), array('title' => 'Функции'), array('title' => 'Модули'), array('title' => 'Тестирование'));
 $test_buttons = array(array('title' => "Вывод данных"), array('title' => 'Ввод данных'), array('title' => 'Переменные'), array('title' => 'Типы данных'), array('title' => 'Условный оператор'), array('title' => 'Циклы'), array('title' => 'Функции'), array('title' => 'Модули'), array('title' => 'Лекции'));
 $start_buttons = array(array('title' => "Лекции"), array('title' => 'Тестирование'));
@@ -78,9 +79,9 @@ if (is_null($data['state']['session']['active'])) {
         }
     } else if ($data['state']['session']['choice'] == "test" && is_null($data['state']['session']['test'])) {
         $test_theme = $data['request']['nlu']['tokens'];
+        $points = 0;
+        $question = 0;
         if (in_array($output, $test_theme)) {
-            $points = 0;
-            $question = 0;
             $questions = getQuestions("Вывод данных");
             $question_buttons = array(array('title' => $questions[$question]['option1']), array('title' => $questions[$question]['option2']), array('title' => $questions[$question]['option3']), array('title' => $questions[$question]['option4']));
             $text = (string)($question + 1) . "й вопрос: " . $questions[$question]['question'] . "\nВарианты ответа: \n{1. }{}" . $questions[$question]['option1'] . "\n{2. }{}" . $questions[$question]['option2'] . "\n{3. }{}" . $questions[$question]['option3'] . "\n{4. }{}" . $questions[$question]['option4'];
@@ -130,6 +131,7 @@ if (is_null($data['state']['session']['active'])) {
         $points = $data['state']['session']['points'];
         $question = $data['state']['session']['question'];
         $questions = getQuestions($data['state']['session']['test']);
+        $question_theme = $data['state']['session']['test'];
         if ($data['state']['session']['ready_for_answer']) {
             $user_answer = $data['request']['nlu']['tokens'];
             if (in_array($questions[$question]['correct'], $user_answer)) {
@@ -142,7 +144,7 @@ if (is_null($data['state']['session']['active'])) {
             if ($question < count($questions)) {
                 $text .= "\n" . (string)($question + 1) . "й вопрос: " . $questions[$question]['question'] . "\nВарианты ответа: \n{1. }{}" . $questions[$question]['option1'] . "\n{2. }{}" . $questions[$question]['option2'] . "\n{3. }{}" . $questions[$question]['option3'] . "\n{4. }{}" . $questions[$question]['option4'];
                 $question_buttons = array(array('title' => $questions[$question]['option1']), array('title' => $questions[$question]['option2']), array('title' => $questions[$question]['option3']), array('title' => $questions[$question]['option4']));
-                $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, "buttons" => $question_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "test", "test" => "Вывод данных", "points" => $points, "question" => $question, "ready_for_answer" => true));
+                $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, "buttons" => $question_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "test", "test" => $question_theme, "points" => $points, "question" => $question, "ready_for_answer" => true));
             } else {
                 $text .= "\n\nВаш счет: " . $points . ".\nМожем пройти тестирование по другой теме или перейти к лекциям.";
                 $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'buttons' => $test_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "test"));

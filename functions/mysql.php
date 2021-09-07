@@ -35,3 +35,11 @@ function getQuestions($theme)
     for ($questions_data = []; $row = mysqli_fetch_assoc($questions_sql); $questions_data[] = $row);
     return $questions_data;
 }
+
+function getThemes()
+{
+    $query_themes = "SELECT theme FROM themes";
+    $themes_sql = mysqli_query(connectDB(), $query_themes);
+    for ($themes_data = []; $row = mysqli_fetch_assoc($themes_sql); $themes_data[] = $row);
+    return $themes_data;
+}
