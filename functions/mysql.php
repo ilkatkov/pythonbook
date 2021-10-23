@@ -24,7 +24,7 @@ function getArticle($article)
     $query_article = "SELECT text FROM articles WHERE name = '" . $article . "'";
     $articles_sql = mysqli_query(connectDB(), $query_article);
     for ($articles_data = []; $row = mysqli_fetch_assoc($articles_sql); $articles_data[] = $row);
-    return $articles_data[0]['text'] . "\n\nЖивые примеры кода смотри на книгапитон.рф в соответствующей теме урока.";
+    return $articles_data[0]['text'];
 }
 
 
