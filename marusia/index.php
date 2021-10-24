@@ -54,25 +54,25 @@ if (in_array("пока", $user_answer) || in_array("стоп", $user_answer) || 
         $lesson_theme = $data['request']['nlu']['tokens'];
         if (in_array($output, $lesson_theme) || array_intersect($lesson_theme, $nums_theme[0])) {
             $text = getArticle("Вывод данных");
-            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
+            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'card' => array("type" => "BigImage", "image_id" => 457239022), 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
         } else if (in_array($input, $lesson_theme) || array_intersect($lesson_theme, $nums_theme[1])) {
             $text = getArticle("Ввод данных");
-            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
+            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'card' => array("type" => "BigImage", "image_id" => 457239023), 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
         } else if (in_array($variables, $lesson_theme) || array_intersect($lesson_theme, $nums_theme[2])) {
             $text = getArticle("Переменные");
-            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
+            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'card' => array("type" => "BigImage", "image_id" => 457239024),'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
         } else if (in_array($types, $lesson_theme) || array_intersect($lesson_theme, $nums_theme[3])) {
             $text = getArticle("Типы данных");
-            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
+            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'card' => array("type" => "BigImage", "image_id" => 457239025), 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
         } else if (in_array($operator, $lesson_theme) || array_intersect($lesson_theme, $nums_theme[4])) {
             $text = getArticle("Условный оператор");
-            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
+            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'card' => array("type" => "BigImage", "image_id" => 457239026), 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
         } else if (in_array($cicles, $lesson_theme) || array_intersect($lesson_theme, $nums_theme[5])) {
             $text = getArticle("Циклы");
-            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
+            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'card' => array("type" => "BigImage", "image_id" => 457239027), 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
         } else if (in_array($functions, $lesson_theme) || array_intersect($lesson_theme, $nums_theme[6])) {
             $text = getArticle("Функции");
-            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
+            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'card' => array("type" => "BigImage", "image_id" => 457239029), 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
         } else if (array_intersect($lesson_theme, $test)) {
             $response = array("session" => $session, "version" => $version, "response" => array("text" => "Выбери тему тестирования:{\n\n1. }{\n}^Вывод данных^\n{2. }{}^Ввод данных^\n{3. }{}^Перем`енные^\n{4. }{}^Типы данных^\n{5. }{}^Условный оператор^\n{6. }{}^Циклы^\n{7. }{^`или^}{Функции}{^Ф`ункции^?}", 'buttons' => $test_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "test"));
         } else {
