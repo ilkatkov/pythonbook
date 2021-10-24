@@ -1,11 +1,14 @@
 <?php
 include_once "../functions/mysql.php";
+include_once "../functions/logs.php";
 
 
 $data = json_decode(file_get_contents('php://input'), true);
 
 $session = $data['session'];
 $version = $data['version'];
+
+
 
 // кнопки
 $lessons_buttons = array(array('title' => "Вывод данных"), array('title' => 'Ввод данных'), array('title' => 'Переменные'), array('title' => 'Типы данных'), array('title' => 'Условный оператор'), array('title' => 'Циклы'), array('title' => 'Функции'),  array('title' => 'Тестирование'));
@@ -60,7 +63,7 @@ if (in_array("пока", $user_answer) || in_array("стоп", $user_answer) || 
             $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'card' => array("type" => "BigImage", "image_id" => 457239023), 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
         } else if (in_array($variables, $lesson_theme) || array_intersect($lesson_theme, $nums_theme[2])) {
             $text = getArticle("Переменные");
-            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'card' => array("type" => "BigImage", "image_id" => 457239024),'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
+            $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'card' => array("type" => "BigImage", "image_id" => 457239024), 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
         } else if (in_array($types, $lesson_theme) || array_intersect($lesson_theme, $nums_theme[3])) {
             $text = getArticle("Типы данных");
             $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'card' => array("type" => "BigImage", "image_id" => 457239025), 'buttons' => $lessons_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "lessons"));
@@ -132,34 +135,46 @@ if (in_array("пока", $user_answer) || in_array("стоп", $user_answer) || 
         if ($data['state']['session']['ready_for_answer']) {
             $user_answer = $data['request']['nlu']['tokens'];
             if (in_array($questions[$question]['correct'], $user_answer)) {
-                $text = "Верно!";
+                $mark = "Верно!";
                 $points = $points + 1;
             } else {
-                $text = "Ответ неправильный!";
+                $mark = "Ответ неправильный!";
             }
             $question = $question + 1;
             if ($question < count($questions)) {
-                $text .= "\n" . (string)($question + 1) . "й вопрос: " . $questions[$question]['question'] . "\nВарианты ответа: \n{1. }{}" . $questions[$question]['option1'] . "\n{2. }{}" . $questions[$question]['option2'] . "\n{3. }{}" . $questions[$question]['option3'] . "\n{4. }{}" . $questions[$question]['option4'];
+                $text = $mark . "\n\n" .(string)($question + 1) . "й вопрос: " . $questions[$question]['question'] . "\nВарианты ответа: \n{1. }{}" . $questions[$question]['option1'] . "\n{2. }{}" . $questions[$question]['option2'] . "\n{3. }{}" . $questions[$question]['option3'] . "\n{4. }{}" . $questions[$question]['option4'];
                 $question_buttons = array(array('title' => $questions[$question]['option1']), array('title' => $questions[$question]['option2']), array('title' => $questions[$question]['option3']), array('title' => $questions[$question]['option4']));
                 $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, "buttons" => $question_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "test", "test" => $question_theme, "points" => $points, "question" => $question, "ready_for_answer" => true));
             } else {
                 if ($points >= 6 && $points <= 7) {
                     $result = "\n\nБраво! Отличный результат!";
+                    $tts_text =  $mark . " <speaker audio=marusia-sounds/game-win-1> ";
                 } else if ($points >= 4 && $points <= 5) {
                     $result = "\n\nВы показали хороший результат!";
+                    $tts_text = $mark . " <speaker audio=marusia-sounds/game-win-1> ";
                 } else if ($points >= 2 && $points <= 3) {
-                    $result = "\n\nУдовлетворительно.";
+                    $result = "\n\nВы набрали очень мало баллов.";
+                    $tts_text = $mark .  " <speaker audio=marusia-sounds/game-loss-3> ";
                 } else if ($points >= 0 && $points <= 1) {
                     $result = "\n\nВидимо, вы не готовы к этой теме тестирования.";
+                    $tts_text = $mark .  " <speaker audio=marusia-sounds/game-loss-3> ";
                 }
                 $text .= $result . "\nВаш счет: " . $points . " из " . count($questions) . ".\n\nМожем пройти тестирование по другой теме или перейти к лекциям.";
-                $response = array("session" => $session, "version" => $version, "response" => array("text" => $text, 'buttons' => $test_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "test"));
+                $tts_text .= $text;
+
+                $text = $mark . $text;
+                $response = array("session" => $session, "version" => $version, "response" => array('tts' => $tts_text, "text" => $text, 'buttons' => $test_buttons, "end_session" => false), 'session_state' => array("active" => true, "choice" => "test"));
             }
         }
     }
 }
 
-
+// записываем логи
+$http_code = http_response_code();
+$timezone = $data['meta']['timezone'];
+$city = $data['meta']['_city_ru'];
+$user_id = $data['session']['user_id'];
+write_log($http_code, $user_id, $timezone, $city, $user_answer);
 
 
 header('Content-Type: application/json');
